@@ -1,0 +1,622 @@
+{
+  "protocol": "Eight games per player, features averaged, quantiles at 0.1, 0.5, 0.9. A six-row validation search selects on macro per-bin MAE. The ship bar is macro MAE, tail bias, interval width, and per-bin coverage. Test is scored once.",
+  "pool": "rapid",
+  "games_per_player": 8,
+  "feature_names": [
+    "is_white",
+    "game_plies",
+    "n_subject_moves",
+    "rate_pawn",
+    "rate_knight",
+    "rate_bishop",
+    "rate_rook",
+    "rate_queen",
+    "rate_king",
+    "rate_capture",
+    "rate_check",
+    "rate_promotion",
+    "castled",
+    "castle_kingside",
+    "castle_ply",
+    "mat_opening_mean",
+    "mat_middlegame_mean",
+    "developed_minors_ply10",
+    "avg_legal_moves",
+    "cpl_mean",
+    "cpl_median",
+    "eval_volatility",
+    "mistake_rate",
+    "blunder_rate",
+    "best_move_rate"
+  ],
+  "numeric_features": [
+    "is_white",
+    "game_plies",
+    "n_subject_moves",
+    "rate_pawn",
+    "rate_knight",
+    "rate_bishop",
+    "rate_rook",
+    "rate_queen",
+    "rate_king",
+    "rate_capture",
+    "rate_check",
+    "rate_promotion",
+    "castled",
+    "castle_kingside",
+    "castle_ply",
+    "mat_opening_mean",
+    "mat_middlegame_mean",
+    "developed_minors_ply10",
+    "avg_legal_moves",
+    "cpl_mean",
+    "cpl_median",
+    "eval_volatility",
+    "mistake_rate",
+    "blunder_rate",
+    "best_move_rate"
+  ],
+  "search": [
+    {
+      "name": "frozen",
+      "max_depth": 4,
+      "min_child_weight": 10,
+      "learning_rate": 0.05,
+      "frozen": true,
+      "val_macro_mae": 153.5974702453613,
+      "val_mae": 153.59747024536134,
+      "val_within_150": 0.5783333333333334,
+      "val_coverage": 0.8025,
+      "interval_scale": 1.05,
+      "best_iteration_q50": 399
+    },
+    {
+      "name": "depth-3",
+      "max_depth": 3,
+      "min_child_weight": 10,
+      "learning_rate": 0.05,
+      "frozen": false,
+      "val_macro_mae": 156.23165252685544,
+      "val_mae": 156.23165252685547,
+      "val_within_150": 0.5766666666666667,
+      "val_coverage": 0.7875,
+      "interval_scale": 1.0,
+      "best_iteration_q50": 399
+    },
+    {
+      "name": "depth-5",
+      "max_depth": 5,
+      "min_child_weight": 10,
+      "learning_rate": 0.05,
+      "frozen": false,
+      "val_macro_mae": 152.82426600138348,
+      "val_mae": 152.82426600138345,
+      "val_within_150": 0.57,
+      "val_coverage": 0.7958333333333333,
+      "interval_scale": 1.05,
+      "best_iteration_q50": 398
+    },
+    {
+      "name": "min-child-5",
+      "max_depth": 4,
+      "min_child_weight": 5,
+      "learning_rate": 0.05,
+      "frozen": false,
+      "val_macro_mae": 153.61913808186847,
+      "val_mae": 153.6191380818685,
+      "val_within_150": 0.5791666666666667,
+      "val_coverage": 0.8033333333333333,
+      "interval_scale": 1.05,
+      "best_iteration_q50": 396
+    },
+    {
+      "name": "min-child-20",
+      "max_depth": 4,
+      "min_child_weight": 20,
+      "learning_rate": 0.05,
+      "frozen": false,
+      "val_macro_mae": 153.16514602661135,
+      "val_mae": 153.16514602661132,
+      "val_within_150": 0.5775,
+      "val_coverage": 0.8066666666666666,
+      "interval_scale": 1.05,
+      "best_iteration_q50": 399
+    },
+    {
+      "name": "lr-0.1",
+      "max_depth": 4,
+      "min_child_weight": 10,
+      "learning_rate": 0.1,
+      "frozen": false,
+      "val_macro_mae": 152.57037760416665,
+      "val_mae": 152.57037760416668,
+      "val_within_150": 0.5808333333333333,
+      "val_coverage": 0.8091666666666667,
+      "interval_scale": 1.1,
+      "best_iteration_q50": 389
+    }
+  ],
+  "chosen": {
+    "max_depth": 4,
+    "min_child_weight": 10,
+    "learning_rate": 0.1,
+    "name": "lr-0.1",
+    "frozen": false
+  },
+  "interval_scale": 1.1,
+  "val_coverage": 0.8091666666666667,
+  "val_macro_mae": 152.57037760416665,
+  "val_mae": 152.57037760416668,
+  "val_within_150": 0.5808333333333333,
+  "test_coverage": 0.8040033361134279,
+  "test_macro_mae": 152.19367097929037,
+  "test_mae": 152.20955682775198,
+  "test_within_150": 0.5821517931609674,
+  "test_bins": [
+    {
+      "bin": "800-1000",
+      "n": 300,
+      "mae": 139.69247599283855,
+      "bias": 110.43768636067708,
+      "coverage": 0.67,
+      "median_width": 331.3683868408203
+    },
+    {
+      "bin": "1000-1200",
+      "n": 300,
+      "mae": 168.30469685872396,
+      "bias": 102.01833129882813,
+      "coverage": 0.8366666666666667,
+      "median_width": 484.01628112792974
+    },
+    {
+      "bin": "1200-1400",
+      "n": 300,
+      "mae": 162.73601399739584,
+      "bias": 76.03502034505209,
+      "coverage": 0.8633333333333333,
+      "median_width": 579.6197021484375
+    },
+    {
+      "bin": "1400-1600",
+      "n": 300,
+      "mae": 172.9184336344401,
+      "bias": 12.578443806966146,
+      "coverage": 0.8133333333333334,
+      "median_width": 584.4800720214843
+    },
+    {
+      "bin": "1600-1800",
+      "n": 300,
+      "mae": 155.32581502278646,
+      "bias": -14.315590413411458,
+      "coverage": 0.8366666666666667,
+      "median_width": 587.6346496582031
+    },
+    {
+      "bin": "1800-2000",
+      "n": 300,
+      "mae": 152.27885498046874,
+      "bias": -71.84232584635417,
+      "coverage": 0.85,
+      "median_width": 560.4869934082031
+    },
+    {
+      "bin": "2000-2200",
+      "n": 299,
+      "mae": 143.53029140102424,
+      "bias": -80.1235882302989,
+      "coverage": 0.842809364548495,
+      "median_width": 475.5136718750002
+    },
+    {
+      "bin": "2200-2400",
+      "n": 299,
+      "mae": 122.76278594664507,
+      "bias": -79.80569100778636,
+      "coverage": 0.7190635451505016,
+      "median_width": 301.51198730468764
+    }
+  ],
+  "ship_ready": false,
+  "wide_bins": [
+    "800-1000",
+    "1000-1200",
+    "1200-1400",
+    "1400-1600",
+    "1600-1800",
+    "1800-2000",
+    "2000-2200"
+  ],
+  "tail_bias_bins": [
+    "800-1000",
+    "1000-1200",
+    "2000-2200"
+  ],
+  "ship_bar": {
+    "macro_mae_max": 120.0,
+    "tail_bias_max": 80.0,
+    "width_max": 350.0,
+    "bin_coverage_min": 0.7
+  },
+  "engine_linear_val_macro_mae": 188.89682904162112,
+  "top_features": [
+    {
+      "feature": "cpl_mean",
+      "importance": 104.40511243693035,
+      "importance_std": 5.076494249987404,
+      "description": "Average centipawns given away on this side's moves. Lower means more accurate play and usually a higher rating.",
+      "curve": [
+        {
+          "value_mean": 33.69437710599478,
+          "elo_mean": 2179.7520833333333,
+          "n": 120
+        },
+        {
+          "value_mean": 42.921961405011494,
+          "elo_mean": 2036.0604166666667,
+          "n": 120
+        },
+        {
+          "value_mean": 48.936052792116676,
+          "elo_mean": 1921.5197916666666,
+          "n": 120
+        },
+        {
+          "value_mean": 54.96816224497138,
+          "elo_mean": 1757.4302083333334,
+          "n": 120
+        },
+        {
+          "value_mean": 60.30911979403606,
+          "elo_mean": 1645.153125,
+          "n": 120
+        },
+        {
+          "value_mean": 66.23686328221692,
+          "elo_mean": 1536.775,
+          "n": 120
+        },
+        {
+          "value_mean": 73.34872839050544,
+          "elo_mean": 1427.5104166666667,
+          "n": 120
+        },
+        {
+          "value_mean": 82.94600015123183,
+          "elo_mean": 1254.878125,
+          "n": 120
+        },
+        {
+          "value_mean": 94.62166591187015,
+          "elo_mean": 1139.753125,
+          "n": 120
+        },
+        {
+          "value_mean": 118.06371294618263,
+          "elo_mean": 1051.1104166666667,
+          "n": 120
+        }
+      ]
+    },
+    {
+      "feature": "mistake_rate",
+      "importance": 20.16228354899089,
+      "importance_std": 2.0224245784722092,
+      "description": "Share of this side's moves that lost at least 100 centipawns (one pawn).",
+      "curve": [
+        {
+          "value_mean": 0.07176492484670328,
+          "elo_mean": 2184.155208333333,
+          "n": 120
+        },
+        {
+          "value_mean": 0.10525160215134197,
+          "elo_mean": 2004.1322916666666,
+          "n": 120
+        },
+        {
+          "value_mean": 0.12387537409366153,
+          "elo_mean": 1910.2416666666666,
+          "n": 120
+        },
+        {
+          "value_mean": 0.14010898045205744,
+          "elo_mean": 1781.9958333333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.15893273175606845,
+          "elo_mean": 1658.8885416666667,
+          "n": 120
+        },
+        {
+          "value_mean": 0.17547049106961735,
+          "elo_mean": 1541.9854166666667,
+          "n": 120
+        },
+        {
+          "value_mean": 0.19464964726243592,
+          "elo_mean": 1410.1791666666666,
+          "n": 120
+        },
+        {
+          "value_mean": 0.21766587762961037,
+          "elo_mean": 1288.3989583333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.24656428836923086,
+          "elo_mean": 1164.16875,
+          "n": 120
+        },
+        {
+          "value_mean": 0.30184373187356184,
+          "elo_mean": 1005.796875,
+          "n": 120
+        }
+      ]
+    },
+    {
+      "feature": "cpl_median",
+      "importance": 16.86784346516928,
+      "importance_std": 0.9289428231175945,
+      "description": "Typical centipawn loss on this side's moves, less pulled by one huge blunder than the mean.",
+      "curve": [
+        {
+          "value_mean": 10.869834710743802,
+          "elo_mean": 2170.0320247933882,
+          "n": 121
+        },
+        {
+          "value_mean": 15.100520833333333,
+          "elo_mean": 2043.36875,
+          "n": 120
+        },
+        {
+          "value_mean": 17.739152892561982,
+          "elo_mean": 1819.2128099173553,
+          "n": 121
+        },
+        {
+          "value_mean": 20.35451680672269,
+          "elo_mean": 1787.361344537815,
+          "n": 119
+        },
+        {
+          "value_mean": 22.587293388429753,
+          "elo_mean": 1660.926652892562,
+          "n": 121
+        },
+        {
+          "value_mean": 25.383474576271187,
+          "elo_mean": 1539.6186440677966,
+          "n": 118
+        },
+        {
+          "value_mean": 28.597916666666666,
+          "elo_mean": 1402.7697916666666,
+          "n": 120
+        },
+        {
+          "value_mean": 32.34297520661157,
+          "elo_mean": 1307.0227272727273,
+          "n": 121
+        },
+        {
+          "value_mean": 37.10294117647059,
+          "elo_mean": 1213.7079831932774,
+          "n": 119
+        },
+        {
+          "value_mean": 50.442708333333336,
+          "elo_mean": 998.6145833333334,
+          "n": 120
+        }
+      ]
+    },
+    {
+      "feature": "avg_legal_moves",
+      "importance": 16.4785397237142,
+      "importance_std": 0.605071521157555,
+      "description": "Average number of legal moves on this side's turns. Open positions have more choices; cramped or lost positions have fewer.",
+      "curve": [
+        {
+          "value_mean": 25.800296237470217,
+          "elo_mean": 1386.8822916666666,
+          "n": 120
+        },
+        {
+          "value_mean": 27.721673097943363,
+          "elo_mean": 1417.7947916666667,
+          "n": 120
+        },
+        {
+          "value_mean": 28.760174480949825,
+          "elo_mean": 1529.6291666666666,
+          "n": 120
+        },
+        {
+          "value_mean": 29.454463274495765,
+          "elo_mean": 1594.8291666666667,
+          "n": 120
+        },
+        {
+          "value_mean": 30.083758113764347,
+          "elo_mean": 1595.5708333333334,
+          "n": 120
+        },
+        {
+          "value_mean": 30.719149492129215,
+          "elo_mean": 1681.275,
+          "n": 120
+        },
+        {
+          "value_mean": 31.36590358765547,
+          "elo_mean": 1633.3729166666667,
+          "n": 120
+        },
+        {
+          "value_mean": 32.087655385239536,
+          "elo_mean": 1652.1708333333333,
+          "n": 120
+        },
+        {
+          "value_mean": 33.04151494373471,
+          "elo_mean": 1728.7166666666667,
+          "n": 120
+        },
+        {
+          "value_mean": 34.72794949768322,
+          "elo_mean": 1729.7010416666667,
+          "n": 120
+        }
+      ]
+    },
+    {
+      "feature": "best_move_rate",
+      "importance": 11.149127624511726,
+      "importance_std": 0.5349802328256087,
+      "description": "Share of this side's moves that matched Stockfish's top move at the training depth.",
+      "curve": [
+        {
+          "value_mean": 0.2819916322786016,
+          "elo_mean": 1129.284375,
+          "n": 120
+        },
+        {
+          "value_mean": 0.32496903825431417,
+          "elo_mean": 1277.1864583333333,
+          "n": 120
+        },
+        {
+          "value_mean": 0.34584195681072144,
+          "elo_mean": 1356.4489583333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.36170013488648595,
+          "elo_mean": 1477.3552083333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.3766951642521909,
+          "elo_mean": 1558.6635416666666,
+          "n": 120
+        },
+        {
+          "value_mean": 0.39422153892653355,
+          "elo_mean": 1684.2489583333333,
+          "n": 120
+        },
+        {
+          "value_mean": 0.41075278737741994,
+          "elo_mean": 1670.8864583333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.4307981405660411,
+          "elo_mean": 1829.6083333333333,
+          "n": 120
+        },
+        {
+          "value_mean": 0.45410430283448366,
+          "elo_mean": 1889.5239583333334,
+          "n": 120
+        },
+        {
+          "value_mean": 0.5055384781900885,
+          "elo_mean": 2076.7364583333333,
+          "n": 120
+        }
+      ]
+    }
+  ],
+  "watched_features": [
+    "cpl_mean",
+    "mistake_rate",
+    "cpl_median",
+    "avg_legal_moves",
+    "best_move_rate"
+  ],
+  "sample": {
+    "players": 12000,
+    "engine_games": 95781,
+    "games_per_player": 8,
+    "bins": [
+      {
+        "bin": "800-1000",
+        "bin_index": 0,
+        "tail": true,
+        "eligible_players": 41632,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "1000-1200",
+        "bin_index": 1,
+        "tail": true,
+        "eligible_players": 68941,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "1200-1400",
+        "bin_index": 2,
+        "tail": false,
+        "eligible_players": 84957,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "1400-1600",
+        "bin_index": 3,
+        "tail": false,
+        "eligible_players": 91891,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "1600-1800",
+        "bin_index": 4,
+        "tail": false,
+        "eligible_players": 81476,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "1800-2000",
+        "bin_index": 5,
+        "tail": false,
+        "eligible_players": 54414,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "2000-2200",
+        "bin_index": 6,
+        "tail": true,
+        "eligible_players": 23256,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      },
+      {
+        "bin": "2200-2400",
+        "bin_index": 7,
+        "tail": true,
+        "eligible_players": 5943,
+        "selected_players": 1500,
+        "selected_sides": 12000
+      }
+    ]
+  },
+  "importance_csv": "permutation_importance.csv",
+  "models": {
+    "q10": "model_q10.json",
+    "q50": "model_q50.json",
+    "q90": "model_q90.json"
+  },
+  "encoder": "encoder.joblib",
+  "depth": 10,
+  "coverage_target": 0.8
+}

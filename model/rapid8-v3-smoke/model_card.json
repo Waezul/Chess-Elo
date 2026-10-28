@@ -1,0 +1,687 @@
+{
+  "revision": "rapid8-v3",
+  "feature_version": 3,
+  "pool": "rapid",
+  "source_label": "Lichess rapid, September 2026",
+  "games_per_player": 8,
+  "test_players": 800,
+  "feature_names": [
+    "is_white",
+    "game_plies",
+    "n_subject_moves",
+    "rate_pawn",
+    "rate_knight",
+    "rate_bishop",
+    "rate_rook",
+    "rate_queen",
+    "rate_king",
+    "rate_capture",
+    "rate_check",
+    "rate_promotion",
+    "castled",
+    "castle_kingside",
+    "castle_ply",
+    "mat_opening_mean",
+    "mat_middlegame_mean",
+    "developed_minors_ply10",
+    "avg_legal_moves",
+    "cpl_mean",
+    "cpl_median",
+    "eval_volatility",
+    "mistake_rate",
+    "blunder_rate",
+    "best_move_rate",
+    "wpl_mean",
+    "acc_mean",
+    "cpl_balanced",
+    "mistake_rate_balanced",
+    "cpl_opening",
+    "cpl_late",
+    "opp_cpl_mean",
+    "opp_wpl_mean",
+    "opp_acc_mean",
+    "opp_blunder_rate",
+    "opp_cpl_balanced",
+    "has_clock",
+    "clk_think_frac_mean",
+    "clk_think_cv",
+    "clk_instant_rate",
+    "clk_low_rate",
+    "clk_end_frac",
+    "cpl_calm",
+    "tc_base",
+    "tc_increment",
+    "acc_mean_std",
+    "acc_mean_min",
+    "acc_mean_max",
+    "wpl_mean_std",
+    "wpl_mean_min",
+    "wpl_mean_max",
+    "cpl_mean_std",
+    "cpl_mean_min",
+    "cpl_mean_max",
+    "blunder_rate_std",
+    "blunder_rate_min",
+    "blunder_rate_max"
+  ],
+  "numeric_features": [
+    "is_white",
+    "game_plies",
+    "n_subject_moves",
+    "rate_pawn",
+    "rate_knight",
+    "rate_bishop",
+    "rate_rook",
+    "rate_queen",
+    "rate_king",
+    "rate_capture",
+    "rate_check",
+    "rate_promotion",
+    "castled",
+    "castle_kingside",
+    "castle_ply",
+    "mat_opening_mean",
+    "mat_middlegame_mean",
+    "developed_minors_ply10",
+    "avg_legal_moves",
+    "cpl_mean",
+    "cpl_median",
+    "eval_volatility",
+    "mistake_rate",
+    "blunder_rate",
+    "best_move_rate",
+    "wpl_mean",
+    "acc_mean",
+    "cpl_balanced",
+    "mistake_rate_balanced",
+    "cpl_opening",
+    "cpl_late",
+    "opp_cpl_mean",
+    "opp_wpl_mean",
+    "opp_acc_mean",
+    "opp_blunder_rate",
+    "opp_cpl_balanced",
+    "has_clock",
+    "clk_think_frac_mean",
+    "clk_think_cv",
+    "clk_instant_rate",
+    "clk_low_rate",
+    "clk_end_frac",
+    "cpl_calm",
+    "tc_base",
+    "tc_increment",
+    "acc_mean_std",
+    "acc_mean_min",
+    "acc_mean_max",
+    "wpl_mean_std",
+    "wpl_mean_min",
+    "wpl_mean_max",
+    "cpl_mean_std",
+    "cpl_mean_min",
+    "cpl_mean_max",
+    "blunder_rate_std",
+    "blunder_rate_min",
+    "blunder_rate_max"
+  ],
+  "interval_scales": {
+    "800-1000": 1.2,
+    "1000-1200": 1.0,
+    "1200-1400": 0.95,
+    "1400-1600": 1.0,
+    "1600-1800": 0.95,
+    "1800-2000": 1.05,
+    "2000-2200": 1.0,
+    "2200-2400": 1.2,
+    "all": 1.05
+  },
+  "monotone": {
+    "cpl_mean": -1,
+    "cpl_median": -1,
+    "mistake_rate": -1,
+    "blunder_rate": -1,
+    "best_move_rate": 1,
+    "wpl_mean": -1,
+    "acc_mean": 1,
+    "cpl_balanced": -1,
+    "mistake_rate_balanced": -1,
+    "cpl_calm": -1
+  },
+  "clock_dropout": 0.2,
+  "stockfish": "Stockfish 18",
+  "search": {
+    "chosen": {
+      "name": "frozen",
+      "max_depth": 5,
+      "min_child_weight": 10,
+      "learning_rate": 0.03,
+      "frozen": true,
+      "val_macro_mae": 147.30202102661133,
+      "val_mae": 147.30202102661133,
+      "val_within_150": 0.585,
+      "val_coverage": 0.81125,
+      "interval_scale": 1.05,
+      "best_iteration_q10": 299,
+      "best_iteration_q50": 299,
+      "best_iteration_q90": 299
+    },
+    "rows": [
+      {
+        "name": "frozen",
+        "max_depth": 5,
+        "min_child_weight": 10,
+        "learning_rate": 0.03,
+        "frozen": true,
+        "val_macro_mae": 147.30202102661133,
+        "val_mae": 147.30202102661133,
+        "val_within_150": 0.585,
+        "val_coverage": 0.81125,
+        "interval_scale": 1.05,
+        "best_iteration_q10": 299,
+        "best_iteration_q50": 299,
+        "best_iteration_q90": 299
+      },
+      {
+        "name": "depth-4",
+        "max_depth": 4,
+        "min_child_weight": 10,
+        "learning_rate": 0.03,
+        "frozen": false,
+        "val_macro_mae": 149.34522758483888,
+        "val_mae": 149.34522758483888,
+        "val_within_150": 0.58625,
+        "val_coverage": 0.80375,
+        "interval_scale": 1.0,
+        "best_iteration_q10": 299,
+        "best_iteration_q50": 299,
+        "best_iteration_q90": 299
+      }
+    ]
+  },
+  "ablation": [
+    {
+      "set": "v2",
+      "n_features": 25,
+      "val_macro_mae": 157.042843170166,
+      "val_within_150": 0.56625
+    },
+    {
+      "set": "+engine",
+      "n_features": 33,
+      "val_macro_mae": 155.19032669067383,
+      "val_within_150": 0.565
+    },
+    {
+      "set": "+opponent",
+      "n_features": 38,
+      "val_macro_mae": 148.5470288848877,
+      "val_within_150": 0.59
+    },
+    {
+      "set": "+clock",
+      "n_features": 45,
+      "val_macro_mae": 147.48153770446777,
+      "val_within_150": 0.5825
+    },
+    {
+      "set": "all",
+      "n_features": 57,
+      "val_macro_mae": 147.30202102661133,
+      "val_within_150": 0.585
+    }
+  ],
+  "cap_binding": [
+    "q10",
+    "q50",
+    "q90"
+  ],
+  "test_bins": [
+    {
+      "bin": "800-1000",
+      "n": 100,
+      "mae": 147.04877868652343,
+      "bias": 137.0204864501953,
+      "coverage": 0.55,
+      "median_width": 483.6863830566406
+    },
+    {
+      "bin": "1000-1200",
+      "n": 100,
+      "mae": 174.34678466796876,
+      "bias": 133.503671875,
+      "coverage": 0.77,
+      "median_width": 527.8831344604491
+    },
+    {
+      "bin": "1200-1400",
+      "n": 100,
+      "mae": 151.69436706542967,
+      "bias": 95.80605041503907,
+      "coverage": 0.87,
+      "median_width": 591.2503051757812
+    },
+    {
+      "bin": "1400-1600",
+      "n": 100,
+      "mae": 140.2732958984375,
+      "bias": 24.091474609375,
+      "coverage": 0.86,
+      "median_width": 579.9089965820312
+    },
+    {
+      "bin": "1600-1800",
+      "n": 100,
+      "mae": 130.85377197265626,
+      "bias": -51.73522216796875,
+      "coverage": 0.94,
+      "median_width": 581.0273986816406
+    },
+    {
+      "bin": "1800-2000",
+      "n": 100,
+      "mae": 164.53725830078125,
+      "bias": -80.852412109375,
+      "coverage": 0.9,
+      "median_width": 542.2202117919923
+    },
+    {
+      "bin": "2000-2200",
+      "n": 100,
+      "mae": 146.7678759765625,
+      "bias": -108.74103515625,
+      "coverage": 0.88,
+      "median_width": 482.23691711425784
+    },
+    {
+      "bin": "2200-2400",
+      "n": 100,
+      "mae": 129.15617309570314,
+      "bias": -114.42060668945312,
+      "coverage": 0.63,
+      "median_width": 460.36113281249993
+    }
+  ],
+  "test_macro_mae": 148.0847882080078,
+  "test_no_clock": {
+    "coverage": 0.78625,
+    "macro_mae": 153.0174412536621,
+    "mae": 153.0174412536621,
+    "bins": [
+      {
+        "bin": "800-1000",
+        "n": 100,
+        "mae": 159.75152404785158,
+        "bias": 152.61058654785157,
+        "coverage": 0.53,
+        "median_width": 488.3940124511719
+      },
+      {
+        "bin": "1000-1200",
+        "n": 100,
+        "mae": 181.13111389160156,
+        "bias": 144.2636004638672,
+        "coverage": 0.77,
+        "median_width": 519.454769897461
+      },
+      {
+        "bin": "1200-1400",
+        "n": 100,
+        "mae": 159.62721557617186,
+        "bias": 108.78550903320313,
+        "coverage": 0.89,
+        "median_width": 590.9410888671874
+      },
+      {
+        "bin": "1400-1600",
+        "n": 100,
+        "mae": 145.34093383789062,
+        "bias": 33.276300048828126,
+        "coverage": 0.84,
+        "median_width": 588.4729095458985
+      },
+      {
+        "bin": "1600-1800",
+        "n": 100,
+        "mae": 127.5295263671875,
+        "bias": -40.9619970703125,
+        "coverage": 0.93,
+        "median_width": 586.6604827880858
+      },
+      {
+        "bin": "1800-2000",
+        "n": 100,
+        "mae": 161.2454968261719,
+        "bias": -73.91049682617188,
+        "coverage": 0.89,
+        "median_width": 554.2425476074218
+      },
+      {
+        "bin": "2000-2200",
+        "n": 100,
+        "mae": 146.71496704101563,
+        "bias": -115.39822143554687,
+        "coverage": 0.88,
+        "median_width": 489.28839721679674
+      },
+      {
+        "bin": "2200-2400",
+        "n": 100,
+        "mae": 142.79875244140624,
+        "bias": -138.69622314453125,
+        "coverage": 0.56,
+        "median_width": 450.32687988281236
+      }
+    ]
+  },
+  "within_150": 0.58875,
+  "ship_ready": false,
+  "ship_bar": "test macro MAE <= 120 and tail bias within \u00b180. Width and coverage are reported and do not block ship_ready.",
+  "top_features": [
+    {
+      "feature": "cpl_mean",
+      "importance": 35.436359512329105,
+      "importance_std": 2.539509217574762,
+      "description": "Average centipawns given away on this side's moves. Lower means more accurate play and usually a higher rating.",
+      "curve": [
+        {
+          "value_mean": 33.419896189877996,
+          "elo_mean": 2190.6890625,
+          "n": 80
+        },
+        {
+          "value_mean": 43.11078887689321,
+          "elo_mean": 2050.709375,
+          "n": 80
+        },
+        {
+          "value_mean": 48.971153961363754,
+          "elo_mean": 1892.1046875,
+          "n": 80
+        },
+        {
+          "value_mean": 55.33280288773157,
+          "elo_mean": 1777.2828125,
+          "n": 80
+        },
+        {
+          "value_mean": 60.45820353776967,
+          "elo_mean": 1677.6421875,
+          "n": 80
+        },
+        {
+          "value_mean": 65.83848706600527,
+          "elo_mean": 1532.65,
+          "n": 80
+        },
+        {
+          "value_mean": 72.97331056627304,
+          "elo_mean": 1445.4796875,
+          "n": 80
+        },
+        {
+          "value_mean": 82.80005827297587,
+          "elo_mean": 1214.778125,
+          "n": 80
+        },
+        {
+          "value_mean": 94.46169904082117,
+          "elo_mean": 1143.7484375,
+          "n": 80
+        },
+        {
+          "value_mean": 118.40675199866277,
+          "elo_mean": 1028.5203125,
+          "n": 80
+        }
+      ]
+    },
+    {
+      "feature": "cpl_opening",
+      "importance": 16.763256622314447,
+      "importance_std": 1.4332987526444234,
+      "description": "Average centipawns given away on this side's moves at ply 20 or earlier.",
+      "curve": [
+        {
+          "value_mean": 15.598731398809523,
+          "elo_mean": 2205.5640625,
+          "n": 80
+        },
+        {
+          "value_mean": 20.98689918154762,
+          "elo_mean": 2011.615625,
+          "n": 80
+        },
+        {
+          "value_mean": 25.95825768849206,
+          "elo_mean": 1907.9125,
+          "n": 80
+        },
+        {
+          "value_mean": 29.90537884424603,
+          "elo_mean": 1714.44375,
+          "n": 80
+        },
+        {
+          "value_mean": 34.19164744543651,
+          "elo_mean": 1645.253125,
+          "n": 80
+        },
+        {
+          "value_mean": 38.77608568948413,
+          "elo_mean": 1534.5515625,
+          "n": 80
+        },
+        {
+          "value_mean": 44.98598524305556,
+          "elo_mean": 1446.71875,
+          "n": 80
+        },
+        {
+          "value_mean": 51.907859623015874,
+          "elo_mean": 1324.309375,
+          "n": 80
+        },
+        {
+          "value_mean": 64.2928478422619,
+          "elo_mean": 1122.7734375,
+          "n": 80
+        },
+        {
+          "value_mean": 91.61147569444445,
+          "elo_mean": 1040.4625,
+          "n": 80
+        }
+      ]
+    },
+    {
+      "feature": "blunder_rate",
+      "importance": 13.408763244628897,
+      "importance_std": 1.4372988100287893,
+      "description": "Share of this side's moves that lost at least 200 centipawns. This was the strongest signal when many games were averaged.",
+      "curve": [
+        {
+          "value_mean": 0.020939292069845572,
+          "elo_mean": 2170.8671875,
+          "n": 80
+        },
+        {
+          "value_mean": 0.03696705623431434,
+          "elo_mean": 2022.609375,
+          "n": 80
+        },
+        {
+          "value_mean": 0.046371994793026214,
+          "elo_mean": 1878.175,
+          "n": 80
+        },
+        {
+          "value_mean": 0.053333689928888706,
+          "elo_mean": 1781.8828125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.06282264741745733,
+          "elo_mean": 1693.765625,
+          "n": 80
+        },
+        {
+          "value_mean": 0.07375020566831826,
+          "elo_mean": 1543.66875,
+          "n": 80
+        },
+        {
+          "value_mean": 0.08516658507198321,
+          "elo_mean": 1386.6171875,
+          "n": 80
+        },
+        {
+          "value_mean": 0.09921394137432028,
+          "elo_mean": 1311.0328125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.12024575207452777,
+          "elo_mean": 1166.2703125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.1561105238495178,
+          "elo_mean": 998.715625,
+          "n": 80
+        }
+      ]
+    },
+    {
+      "feature": "opp_cpl_mean",
+      "importance": 11.92847526550293,
+      "importance_std": 1.2124607446529616,
+      "description": "Average centipawns the opponent gave away. A strong subject tends to raise this number, so it is not forced up or down.",
+      "curve": [
+        {
+          "value_mean": 35.50303368644996,
+          "elo_mean": 2185.6640625,
+          "n": 80
+        },
+        {
+          "value_mean": 43.438023044973036,
+          "elo_mean": 2060.1390625,
+          "n": 80
+        },
+        {
+          "value_mean": 49.67688389106452,
+          "elo_mean": 1868.1765625,
+          "n": 80
+        },
+        {
+          "value_mean": 54.88426157710622,
+          "elo_mean": 1750.1359375,
+          "n": 80
+        },
+        {
+          "value_mean": 60.58132573170955,
+          "elo_mean": 1653.4578125,
+          "n": 80
+        },
+        {
+          "value_mean": 66.60672619467832,
+          "elo_mean": 1563.875,
+          "n": 80
+        },
+        {
+          "value_mean": 73.26309219951526,
+          "elo_mean": 1404.7390625,
+          "n": 80
+        },
+        {
+          "value_mean": 81.68803083547756,
+          "elo_mean": 1294.7984375,
+          "n": 80
+        },
+        {
+          "value_mean": 92.93979418466769,
+          "elo_mean": 1159.3515625,
+          "n": 80
+        },
+        {
+          "value_mean": 117.01821150025496,
+          "elo_mean": 1013.2671875,
+          "n": 80
+        }
+      ]
+    },
+    {
+      "feature": "best_move_rate",
+      "importance": 11.03092597961425,
+      "importance_std": 1.325156074115979,
+      "description": "Share of this side's moves that matched Stockfish's top move at the training depth.",
+      "curve": [
+        {
+          "value_mean": 0.2781932211214653,
+          "elo_mean": 1130.4828125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.32468283074727466,
+          "elo_mean": 1285.1265625,
+          "n": 80
+        },
+        {
+          "value_mean": 0.34548012303279013,
+          "elo_mean": 1358.03125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.3610929703174198,
+          "elo_mean": 1497.5234375,
+          "n": 80
+        },
+        {
+          "value_mean": 0.3771729071947767,
+          "elo_mean": 1579.740625,
+          "n": 80
+        },
+        {
+          "value_mean": 0.39162891074425915,
+          "elo_mean": 1622.7,
+          "n": 80
+        },
+        {
+          "value_mean": 0.40868405318812046,
+          "elo_mean": 1722.1609375,
+          "n": 80
+        },
+        {
+          "value_mean": 0.4314494861468451,
+          "elo_mean": 1763.5453125,
+          "n": 80
+        },
+        {
+          "value_mean": 0.45857376563633323,
+          "elo_mean": 1968.321875,
+          "n": 80
+        },
+        {
+          "value_mean": 0.5109901492058019,
+          "elo_mean": 2025.971875,
+          "n": 80
+        }
+      ]
+    }
+  ],
+  "watched_features": [
+    "cpl_mean",
+    "cpl_opening",
+    "blunder_rate",
+    "opp_cpl_mean",
+    "best_move_rate"
+  ],
+  "linear_mae": 192.82116264083848,
+  "importance_csv": "permutation_importance.csv",
+  "models": {
+    "q10": "model_q10.json",
+    "q50": "model_q50.json",
+    "q90": "model_q90.json"
+  },
+  "encoder": "encoder.joblib",
+  "depth": 10,
+  "coverage_target": 0.8
+}

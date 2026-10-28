@@ -1,0 +1,58 @@
+feature,importance,importance_std,description
+cpl_mean,35.436359512329105,2.539509217574762,Average centipawns given away on this side's moves. Lower means more accurate play and usually a higher rating.
+cpl_opening,16.763256622314447,1.4332987526444234,Average centipawns given away on this side's moves at ply 20 or earlier.
+blunder_rate,13.408763244628897,1.4372988100287893,Share of this side's moves that lost at least 200 centipawns. This was the strongest signal when many games were averaged.
+opp_cpl_mean,11.92847526550293,1.2124607446529616,"Average centipawns the opponent gave away. A strong subject tends to raise this number, so it is not forced up or down."
+best_move_rate,11.03092597961425,1.325156074115979,Share of this side's moves that matched Stockfish's top move at the training depth.
+opp_cpl_balanced,9.837914306640624,1.010179268373083,Average centipawns the opponent gave away from positions within 150 centipawns of equal.
+mistake_rate,7.150897491455078,0.8486554423011309,Share of this side's moves that lost at least 100 centipawns (one pawn).
+cpl_median,5.925158493041994,0.785639252938398,"Typical centipawn loss on this side's moves, less pulled by one huge blunder than the mean."
+avg_legal_moves,5.220130538940424,0.8218105496647999,Average number of legal moves on this side's turns. Open positions have more choices; cramped or lost positions have fewer.
+opp_blunder_rate,4.110944427490233,0.8257754882434315,Share of the opponent's moves that lost at least 200 centipawns.
+mat_middlegame_mean,4.081163803100577,0.7747667298257953,"Average material from this side's view after ply 20, ignoring the last 6 plies so the final result does not leak in. Being ahead here tends to mark the higher-rated side."
+eval_volatility,3.1556663513183594,0.7888805725428601,How much the engine evaluation swung across this side's moves.
+clk_think_cv,2.485611419677724,0.5190328665271836,How uneven this side's think times were: the spread divided by the mean. The first move is left out.
+cpl_balanced,1.871620925903312,0.25135917169910316,Average centipawns given away on this side's moves that started within 150 centipawns of equal.
+mat_opening_mean,1.2394714202880834,0.5050143112680939,Average material from this side's view through ply 20.
+rate_capture,1.2263512420654252,0.24367379556063887,How often this side captured.
+game_plies,1.096827728271478,0.140750259585587,"How long the game lasted, in plies."
+clk_end_frac,1.0299348449706998,0.2599133759618942,"Clock left after this side's last move, as a fraction of the estimated game length."
+n_subject_moves,0.9757738647460883,0.17585151465600987,How many moves this side played.
+tc_increment,0.9285472717285131,0.15981282679862047,Seconds added after each of this side's moves.
+opp_wpl_mean,0.9037469787597615,0.5189759214976185,Average win-percent the opponent gave away on their moves.
+clk_instant_rate,0.7434463348388647,0.16329321871518535,Share of this side's moves after ply 20 that were played in under 2 seconds.
+acc_mean_max,0.6674950103759727,0.07333767866062443,Highest acc_mean across this player's games in the subset.
+castled,0.581393310546872,0.19347424231104232,"1 if this side castled, 0 otherwise."
+cpl_calm,0.4626366577148474,0.13892848740253635,Average centipawns given away on moves played with at least a fifth of the estimated time still on the clock.
+blunder_rate_std,0.42491120910644326,0.13108433143673504,Spread of blunder_rate across this player's games in the subset.
+clk_think_frac_mean,0.40526634216308255,0.13969210051164313,Average think time as a fraction of the estimated game length. This side's first move is left out.
+blunder_rate_max,0.3583869476318341,0.05767804608766707,Highest blunder_rate across this player's games in the subset.
+rate_check,0.31736019897460893,0.12088315071999638,How often this side gave check.
+rate_promotion,0.27427479553222156,0.13588525787742664,How often this side promoted.
+wpl_mean_min,0.218634033203125,0.10252221557887722,Lowest wpl_mean across this player's games in the subset.
+cpl_mean_min,0.21668650817871365,0.11895856395604401,Lowest cpl_mean across this player's games in the subset.
+acc_mean_std,0.20782014465331713,0.0998433707007325,Spread of acc_mean across this player's games in the subset.
+rate_knight,0.1880464172363304,0.05876990927437868,Share of this side's moves that were knight moves.
+cpl_late,0.17228190612792674,0.08780777838572733,Average centipawns given away on this side's moves after ply 60.
+rate_queen,0.1425752410888606,0.15011827783486986,Share of this side's moves that were queen moves.
+tc_base,0.13561817932128406,0.017975564650410628,"Base time on the clock at the start, in seconds."
+mistake_rate_balanced,0.131903396606441,0.09551167693634012,Share of this side's balanced-position moves that lost at least 100 centipawns.
+clk_low_rate,0.12362133789062568,0.0387943156117488,Share of this side's moves played with under a tenth of the estimated game time left.
+castle_ply,0.08308172607420942,0.18899484513237447,The ply on which this side castled.
+rate_bishop,0.07721768188476404,0.06725994037462091,Share of this side's moves that were bishop moves.
+rate_king,0.07654209899901616,0.08196387005201486,"Share of this side's moves that were king moves, including castling."
+acc_mean_min,0.05438287353514966,0.051333165383722595,Lowest acc_mean across this player's games in the subset.
+castle_kingside,0.050349411010739684,0.17536390359121112,"1 for kingside castling, 0 for queenside, empty if they never castled."
+developed_minors_ply10,0.032691513061519115,0.014691842766934764,Knights and bishops that had left their start squares by ply 10.
+rate_rook,0.010415878295890479,0.048410855305297235,Share of this side's moves that were rook moves.
+cpl_mean_max,0.0062375640869106515,0.1094018829001042,Highest cpl_mean across this player's games in the subset.
+acc_mean,0.005007232666014261,0.014966493215441795,"Average move accuracy on this side's moves, from 0 to 100. 100 would mean every move matched the engine's win-percent change."
+has_clock,0.0,0.0,"1 when the time control parsed and every move by this side has a clock, otherwise 0."
+is_white,-0.0027142181396527577,0.0010210291400203726,"Whether this row is White, so the guess can differ by color."
+blunder_rate_min,-0.015502059936528667,0.0208593727049238,Lowest blunder_rate across this player's games in the subset.
+opp_acc_mean,-0.025410888671882504,0.20244618520635063,"Average move accuracy of the opponent, from 0 to 100. This is how cleanly they played, not their rating."
+wpl_mean,-0.06084423828125409,0.06073470942321662,Average win-percent given away on this side's moves. Equal positions lose more from the same centipawn error than positions that are already decided.
+wpl_mean_std,-0.0656151275634727,0.05403385962496082,Spread of wpl_mean across this player's games in the subset.
+wpl_mean_max,-0.07918864440918583,0.044410365840337626,Highest wpl_mean across this player's games in the subset.
+rate_pawn,-0.09882746887207645,0.09701036747901329,Share of this side's moves that were pawn moves.
+cpl_mean_std,-0.10441067504883109,0.11250744824100858,Spread of cpl_mean across this player's games in the subset.
