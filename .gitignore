@@ -16,5 +16,5 @@ Thumbs.db
 .cursor/
 .agents/
 **/skills/
-docs/superpowers/plans/
+docs/
 skills-lock.json

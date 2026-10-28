@@ -22,13 +22,18 @@ python -m src.api
 
 Optional env vars: `MODEL_DIR`, `STOCKFISH_PATH`, `WORKERS`, `MAX_WAITING`, `JOB_TTL_SECONDS`.
 
-API contract: [docs/backend.md](docs/backend.md). Screen copy for the UI: [docs/frontend.md](docs/frontend.md).
+Health and pools: `GET /v1/health`, `GET /v1/pools`. Checklist: `POST /v1/games:check`. Estimate: `POST /v1/estimates`, then poll `GET /v1/estimates/{id}`.
 
 ## Retrain
 
-Derived parquet is not in this repo. The Lichess dump names, Elo window, and Colab Drive layout are in [docs/data.md](docs/data.md).
+Derived parquet is not in this repo. Rebuild from Lichess monthly dumps:
 
-Training notebooks (Colab-first) live under `notebooks/`:
+- Classical: `lichess_db_standard_rated_2017-02.pgn` (Elo 800–2400)
+- Rapid: `lichess_db_standard_rated_2026-09.pgn` (Elo 800–2400)
+
+Colab-first: upload `src/` to `MyDrive/src` and tables under `MyDrive/DATA/` (rapid v3 uses `MyDrive/DATA/rapid2026/`).
+
+Training notebooks live under `notebooks/`:
 
 - `train_player8_v3.ipynb` — rapid, eight games (current experiment)
 - `train_player8.ipynb` — classical, eight games
