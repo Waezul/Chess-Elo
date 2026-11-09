@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import json
 import os
+import threading
+from dataclasses import dataclass
 from pathlib import Path
 
 import chess.engine
@@ -72,7 +74,27 @@ def _engine_binary() -> str | None:
     return binary
 
 
+@dataclass
+class _Boot:
+    catalog: Catalog | None = None
+    runner: JobRunner | None = None
+
+    def services(self) -> tuple[Catalog, JobRunner]:
+        if self.catalog is None or self.runner is None:
+            raise _fail("busy", 503)
+        return self.catalog, self.runner
+
+
 def create_app(catalog: Catalog, runner: JobRunner) -> FastAPI:
+    return _build_app(_Boot(catalog=catalog, runner=runner))
+
+
+def create_booting_app() -> FastAPI:
+    """HTTP app that answers /health before models are loaded."""
+    return _build_app(_Boot())
+
+
+def _build_app(boot: _Boot) -> FastAPI:
     app = FastAPI(title="Chess Elo")
     app.add_middleware(
         CORSMiddleware,
@@ -80,15 +102,19 @@ def create_app(catalog: Catalog, runner: JobRunner) -> FastAPI:
         allow_methods=["GET", "POST"],
         allow_headers=["*"],
     )
-    app.state.catalog = catalog
-    app.state.runner = runner
+    app.state.boot = boot
 
     @app.exception_handler(ApiError)
     async def _api_error(_request: Request, exc: ApiError) -> JSONResponse:
         return JSONResponse(status_code=exc.status, content={"error": exc.error, "message": MESSAGES[exc.error]})
 
+    @app.get("/health")
+    def live() -> dict:
+        return {"ok": True}
+
     @app.get("/v1/health")
     def health() -> dict:
+        catalog, runner = boot.services()
         return {
             "ok": True,
             "engine": "ready" if runner.ready else "down",
@@ -97,15 +123,18 @@ def create_app(catalog: Catalog, runner: JobRunner) -> FastAPI:
 
     @app.get("/v1/pools")
     def pools() -> dict:
+        catalog, _runner = boot.services()
         return catalog.list_summaries()
 
     @app.get("/v1/pools/{pool}")
     def pool_card(pool: str) -> dict:
+        catalog, _runner = boot.services()
         name = _known_pool(pool)
         return catalog.card(name)
 
     @app.post("/v1/games:check")
     async def games_check(request: Request) -> dict:
+        catalog, _runner = boot.services()
         payload = await _payload(request)
         pool = _available_pool(catalog, payload.get("pool"))
         subject = _subject(payload.get("subject"))
@@ -118,6 +147,7 @@ def create_app(catalog: Catalog, runner: JobRunner) -> FastAPI:
 
     @app.post("/v1/estimates")
     async def estimates(request: Request) -> JSONResponse:
+        catalog, runner = boot.services()
         payload = await _payload(request)
         pool = _available_pool(catalog, payload.get("pool"))
         subject = _subject(payload.get("subject"))
@@ -133,6 +163,7 @@ def create_app(catalog: Catalog, runner: JobRunner) -> FastAPI:
 
     @app.get("/v1/estimates/{job_id}")
     def estimate_status(job_id: str) -> dict:
+        _catalog, runner = boot.services()
         job = runner.get(job_id)
         if job is None:
             raise _fail("unknown_job", 404)
@@ -204,23 +235,40 @@ async def _payload(request: Request) -> dict:
 
 
 def create_production_app() -> FastAPI:
-    catalog = load_catalog(_model_dir())
-    binary = _engine_binary()
-    workers = int(os.environ.get("WORKERS", "2"))
-    runner = JobRunner(
-        estimate_fn=stockfish_estimator(catalog, binary) if binary else (lambda *_args: None),
-        workers=workers,
-        max_waiting=int(os.environ.get("MAX_WAITING", "8")),
-        ttl_seconds=float(os.environ.get("JOB_TTL_SECONDS", "600")),
-        ready=binary is not None,
-        messages=MESSAGES,
-    )
-    runner.start()
-    print(
-        f"[api] pools={','.join(catalog.available_ids())} engine={'ready' if runner.ready else 'down'} workers={workers}",
-        flush=True,
-    )
-    return create_app(catalog, runner)
+    boot = _Boot()
+    app = _build_app(boot)
+
+    def load() -> None:
+        try:
+            _load_models(boot)
+        except Exception as exc:
+            print(f"[api] boot failed: {exc}", flush=True)
+
+    def _load_models(boot: _Boot) -> None:
+        catalog = load_catalog(_model_dir())
+        binary = _engine_binary()
+        workers = int(os.environ.get("WORKERS", "2"))
+        runner = JobRunner(
+            estimate_fn=stockfish_estimator(catalog, binary) if binary else (lambda *_args: None),
+            workers=workers,
+            max_waiting=int(os.environ.get("MAX_WAITING", "8")),
+            ttl_seconds=float(os.environ.get("JOB_TTL_SECONDS", "600")),
+            ready=binary is not None,
+            messages=MESSAGES,
+        )
+        runner.start()
+        boot.catalog = catalog
+        boot.runner = runner
+        print(
+            f"[api] pools={','.join(catalog.available_ids())} engine={'ready' if runner.ready else 'down'} workers={workers}",
+            flush=True,
+        )
+
+    @app.on_event("startup")
+    def _start() -> None:
+        threading.Thread(target=load, daemon=True).start()
+
+    return app
 
 
 def main() -> None:

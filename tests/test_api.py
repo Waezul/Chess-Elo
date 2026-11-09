@@ -10,7 +10,7 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from src.api import MAX_BODY, create_app
+from src.api import MAX_BODY, create_app, create_booting_app
 from src.catalog import load_catalog
 from src.checklist import check_pgn, estimated_seconds, pool_from_clock, pool_from_event
 from src.estimate import score_selection
@@ -204,14 +204,26 @@ class ApiTests(unittest.TestCase):
     def _client(self, runner: JobRunner) -> TestClient:
         return TestClient(create_app(self.catalog, runner))
 
+    def test_live_health_answers_before_models_load(self):
+        with TestClient(create_booting_app()) as client:
+            live = client.get("/health")
+            v1 = client.get("/v1/health")
+        self.assertEqual(live.status_code, 200)
+        self.assertEqual(live.json(), {"ok": True})
+        self.assertEqual(v1.status_code, 503)
+        self.assertEqual(v1.json()["error"], "busy")
+
     def test_health_pools_and_method_card(self):
         runner = JobRunner(lambda *_args: None, workers=0, ready=True)
         with self._client(runner) as client:
+            live = client.get("/health")
             health = client.get("/v1/health")
             pools = client.get("/v1/pools")
             card = client.get("/v1/pools/rapid")
             missing = client.get("/v1/pools/hyperbullet")
             blitz = client.get("/v1/pools/blitz")
+        self.assertEqual(live.status_code, 200)
+        self.assertEqual(live.json(), {"ok": True})
         self.assertEqual(health.status_code, 200)
         self.assertEqual(health.json()["pools"], ["classical", "rapid"])
         self.assertEqual(health.json()["engine"], "ready")
